@@ -1,15 +1,33 @@
-// Порахуй загальну кількість лайків в категорії Fashion
+// Наведено список людей. Зроби можливість фільтрації (пошуку) за ім'ям або за прізвищем.
 
-const posts = [
-  { title: "Post l", likes: 20, category: "Tech" },
-  { title: "Post 2", likes: 45, category: "Fashion" },
-  { title: "Post 3", likes: 12, category: "Tech" },
-  { title: "Post 4", likes: 36, category: "Fitness" },
-  { title: "Post 5", likes: 15, category: "Fashion" },
-  { title: "Post 6", likes: 50, category: "Tech" },
-];
+const inputEl = document.querySelector('.contactsFilter');
+const contactsList = document.querySelector('.contacts');
+const contactEl = document.querySelectorAll('.contact');
+//* або
+// const contactEl = [...contactsList.children];
 
-const total = posts.filter(post => post.category === "Fashion")
-                    .reduce((acc, post) => acc + post.likes, 0);
+//! Спосіб 1
+// const onFieldInput = event => {
+//   event.preventDefault();
+//   const inputValue = inputEl.value;
+//   [...contactEl].forEach(contact => {
+//   //* або
+//   // contactEl.forEach(contact => {
+//     if (!contact.textContent.includes(inputValue)) {
+//       contact.remove();
+//     };
+//   });
+// }
 
-console.log(total);
+//! Спосіб 2
+const onFieldInput = event => {
+  event.preventDefault();
+  const inputValue = event.target.value;
+  const inputEl = [...contactEl].filter(contact => contact.textContent.includes(inputValue));
+  //* або
+  // const inputEl = contactEl.filter(contact => contact.textContent.includes(inputValue));
+  contactsList.innerHTML = '';
+  contactsList.append(...inputEl);
+}
+
+inputEl.addEventListener('input', onFieldInput);

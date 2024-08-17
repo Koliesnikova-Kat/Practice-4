@@ -1,12 +1,12 @@
-// Маємо масив об'єктів, який представляє список товарів і їх цін. Знайдіть суму вартості всіх товарів, які коштують більше 10 гривень.
+// При кліку на кнопку "Filter" потрібно видалити зі списку позначені елементи.
 
-const products = [
-  { name: "Milk", price: 20 },
-  { name: "Bread", price: 10 },
-  { name: "Eggs", price: 15 },
-];
+const formEl = document.querySelector('.checkboxForm');
+const checkboxBlock = document.querySelectorAll('.checkboxWrapper');
 
-const total = products.filter(product => product.price > 10)
-                      .reduce((acc, product) => acc + product.price, 0);
+const onFormSubmit = event => {
+  event.preventDefault();
+  const filteredList = [...checkboxBlock].filter(checkboxEl => checkboxEl.lastElementChild.checked);
+  filteredList.forEach(listEl => listEl.remove());
+}
 
-console.log('total:', total);
+formEl.addEventListener('submit', onFormSubmit);

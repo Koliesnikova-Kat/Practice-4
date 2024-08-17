@@ -1,49 +1,11 @@
-// Зібрати в allTopics масив всіх предметів всіх курсів.
-//Виконати фільтрацію, залишивши в allTopics тільки унікальні елементи.
+// При кліку на кнопку "Подвоїти" збільшувати значення в кожному елементі списку в два рази.
 
-const courses = [
+const buttonEl = document.querySelector('#double');
+const listEl = document.querySelectorAll('.listItem');
 
-  {
-    name: "Basic HTML+CSS", 
-    topics: ["VSCode", "HTML", "CSS", "GitHub", "GitHub Desctop"],  
-  },
+const onButtonClick = event => {
+  event.preventDefault();
+  listEl.forEach(listElement => listElement.textContent *= 2);
+}
 
-  {
-    name: "Intermediate HTML+CSS",  
-    topics: ["VSCode", "HTML", "CSS", "GitHub", "Git", "Terminal"],
-  },
-
-  {
-    name: "Basic JavaScript",
-    topics: [
-      "VSCode",
-      "Type system",
-      "Loops",
-      "Function",
-      "Git",
-      "Conditions",
-      "Classes",
-      "GitHub",
-      "DOM",
-    ]
-  },
-  
-  {
-    name: "Intermediate JavaScript",
-    topics: [
-      "VSCode",    
-      "NPM",    
-      "Bundlers",    
-      "Transpiling",    
-      "Git",    
-      "Promises",    
-      "AJAX",    
-      "GitHub",
-    ]
-  },
-];
-
-const allTopics = courses.flatMap(course => course.topics)
-                          .filter((course, index, courses) => courses.indexOf(course) === index);
-
-console.log(allTopics);
+buttonEl.addEventListener('click', onButtonClick);

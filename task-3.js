@@ -1,19 +1,40 @@
-// Напиши функцію, котра приймає масив користувачів і id. У масиві користувачів потрібно знайти людину з заданим id і повернути його ім'я.
-// Якщо користувача не було знайдено, функція повертає повідомлення "Користувача з таким id не знайдено"
+// Кнопка "Зменшити" повинна зменшувати квадрат на 10 пікселів, а кнопка "Збільшити" - збільшувати квадрат на 10 пікселів.
 
-const users = [
-  { id: 1, name: "John" },
-  { id: 2, name: "Pete" },
-  { id: 3, name: "Mary" },
-];
+const buttonDecrease = document.querySelector('#decrease');
+const buttonIncrease = document.querySelector('#increase');
+const boxEl = document.querySelector('#box');
 
-const neededUser = (array, id) => {
-  const user = array.find(el => el.id === id);
-  if (user) {
-    return user.name;
+
+// ! Спосіб 1 //
+const onButtonDecreaseClick = event => {
+  event.preventDefault();
+  boxEl.style.width = `${boxEl.offsetWidth - 10}px`;
+  boxEl.style.height = `${boxEl.offsetHeight - 10}px`;
+};
+
+const onButtonIncreaseClick = event => {
+  event.preventDefault();
+  boxEl.style.width = `${boxEl.offsetWidth + 10}px`;
+  boxEl.style.height = `${boxEl.offsetHeight + 10}px`;
+};
+
+buttonDecrease.addEventListener('click', onButtonDecreaseClick);
+buttonIncrease.addEventListener('click', onButtonIncreaseClick);
+
+
+
+// ! Спосіб 2 //
+const onButtonClick = event => {
+  event.preventDefault();
+  const id = event.target.id;
+  if (id === 'increase') {
+    boxEl.style.width = `${boxEl.offsetWidth + 10}px`;
+    boxEl.style.height = `${boxEl.offsetHeight + 10}px`;
   } else {
-    return 'Користувача з таким id не знайдено';
+    boxEl.style.width = `${boxEl.offsetWidth - 10}px`;
+    boxEl.style.height = `${boxEl.offsetHeight - 10}px`;
   }  
 };
 
-console.log(neededUser(users, 3));
+buttonDecrease.addEventListener('click', onButtonClick);
+buttonIncrease.addEventListener('click', onButtonClick);

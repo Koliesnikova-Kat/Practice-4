@@ -1,8 +1,11 @@
-// Напишіть функцію sayHi(), яка приймає в якості параметра масив імен, перебирає масив і додає до кожного ім'я привітання.
-// Функція повертає новий масив ["Ivan привіт!", "Maria привіт!", "Anna привіт!"]
+// При натисканні на кнопку "SHOW ME", потрібно в консоль вивести значення, яке будемо вводити в інпут.
 
-const names = ['Ivan', 'Maria', 'Anna'];
+const buttonEl = document.querySelector('#allertButton');
+const inputEl = document.querySelector('#allertInput');
 
-const sayHi2 = (names) => names.map(name => `${name} привіт!`);
+const onButtonClick = event => {
+  event.preventDefault();
+  console.log(inputEl.value);
+};
 
-console.log(sayHi2(names));
+buttonEl.addEventListener('click', onButtonClick);

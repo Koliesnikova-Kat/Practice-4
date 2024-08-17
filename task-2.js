@@ -1,12 +1,19 @@
-// Напишіть стрілочну функцію, яка буде перевіряти, чи всі студенти у нашому масиві старші 18 років.
+// При натисканні на кнопку "Приховати" потрібно введені користувачем символи в інпут відображати у вигляді крапок замість звичайного тексту,
+// а також змінити назву кнопки на "Показати", при повторному натисканні знову будемо відображати символи,
+// а назва кнопки зміниться на "Приховати".
 
-const students = [
-  { name: "Alex", age: 17 },
-  { name: "Stas", age: 18 },
-  { name: "Mike", age: 22 },
-  { name: "Den", age: 20 },
-];
+const buttonEl = document.querySelector('#passwordButton');
+const inputEl = document.querySelector('#passwordInput');
 
-const adultStudents = students.every(student => student.age > 18);
+const onButtonClick = event => {
+  event.preventDefault();
+  if (buttonEl.textContent === 'Приховати') {
+    buttonEl.textContent = 'Показати';
+    inputEl.type = 'password';
+  } else {
+    buttonEl.textContent = 'Приховати';
+    inputEl.type = 'text';
+  };
+};
 
-console.log(adultStudents);
+buttonEl.addEventListener('click', onButtonClick);
